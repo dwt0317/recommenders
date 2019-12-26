@@ -41,6 +41,10 @@ implementation:
   container:
     conda: sar_conda.yaml
     entry: azureml-designer-modules/entries/stratified_splitter_entry.py
+    command: [
+      python,
+      azureml-designer-modules/entries/score_sar_entry.py
+    ]
     args:
     - --input-path
     - inputPath: Input path
