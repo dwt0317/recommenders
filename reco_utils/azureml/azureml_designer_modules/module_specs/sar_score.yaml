@@ -1,9 +1,9 @@
-name: SAR Score
-version: 0.0.26
-category: Experimentation
+name: SAR Scoring
+version: 1.1.0
+category: Recommenders
 description: |
-    Python SAR Recommender
-    repo: https://github.com/Microsoft/Recommenders/tree/master/
+    Python SAR Recommenders
+    repo: https://github.com/Microsoft/Recommenders
 inputs:
 - name: Trained model
   type: ModelDirectory
@@ -59,7 +59,7 @@ outputs:
 implementation:
   container:
     conda: sar_conda.yaml
-    entry: azureml-designer-modules/entries/score_sar_entry.py
+    entry: reco_utils/azureml/azureml_designer_modules/entries/score_sar_entry.py
     args: [
       --trained-model, {inputPath: Trained model},
       --dataset-to-score, {inputPath: Dataset to score},

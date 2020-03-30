@@ -14,10 +14,23 @@ WORKDIR ${HOME}
 
 # Install base dependencies
 RUN apt-get update && \
-    apt-get install -y curl git
+    apt-get install -y curl git wget build-essential
+
+# Install cmake which is a requirement by xlearn 
+ARG CMAKE="https://github.com/Kitware/CMake/releases/download/v3.15.2/cmake-3.15.2.tar.gz"
+RUN wget ${CMAKE} -O cmake.tgz && \
+    mkdir cmake && \
+    tar xzf cmake.tgz --strip-components=1 -C cmake && \
+    cd cmake && \
+    ./bootstrap && \
+    make && \
+    make install && \
+    cd .. && \
+    rm cmake.tgz && \
+    rm -rf cmake
 
 # Install Anaconda
-ARG ANACONDA="https://repo.continuum.io/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh"
+ARG ANACONDA="https://repo.continuum.io/miniconda/Miniconda3-4.7.12.1-Linux-x86_64.sh"
 RUN curl ${ANACONDA} -o anaconda.sh && \
     /bin/bash anaconda.sh -b -p conda && \
     rm anaconda.sh && \
@@ -42,7 +55,6 @@ RUN mkdir ${HOME}/.jupyter && \
 # CPU Stage
 FROM base AS cpu
 
-# Setup Conda environment
 RUN python recommenders/scripts/generate_conda_file.py --name base
 
 
