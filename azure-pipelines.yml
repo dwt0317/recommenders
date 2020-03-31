@@ -12,15 +12,14 @@ pool:
 
 steps:
 
-
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '/reco_utils/azureml/azureml_designer_modules/module_specs'
+    SourceFolder: '$(Build.SourcesDirectory)/reco_utils/azureml/azureml_designer_modules/module_specs'
     Contents: '**/*.yaml'
-    TargetFolder: '/'
+    TargetFolder: '$(Build.SourcesDirectory)'
     OverWrite: true
     flattenFolders: true
 
