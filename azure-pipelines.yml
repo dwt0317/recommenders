@@ -9,9 +9,21 @@ trigger:
 pool:
   vmImage: 'ubuntu-latest'
 
+
 steps:
+
+
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '/reco_utils/azureml/azureml_designer_modules/module_specs'
+    Contents: '**/*.yaml'
+    TargetFolder: '/'
+    OverWrite: true
+    flattenFolders: true
+
 
 - script: |
     echo Add other tasks to build, test, and deploy your project.
