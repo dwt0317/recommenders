@@ -35,5 +35,4 @@ steps:
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
     ArtifactName: 'Module snapshot'
-    publishLocation: 'FilePath'
-    TargetPath: '/drop/(Build.DefinitionName)/(Build.BuildNumber)'
+    publishLocation: 'Container'
