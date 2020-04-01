@@ -3,22 +3,28 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+variables:
+  module_spec_folder: 'reco_utils/azureml/azureml_designer_modules/module_specs'
+  module_spec_pattern: '**/*.yaml'
+
 trigger:
   branches:
     include:
     - master
   paths:
     include:
-    - reco_utils/azureml/azureml_designer_modules/module_specs/*
+    - $(module_spec_folder)
 
+pr: none
+    
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
 - task: CopyFiles@2
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/reco_utils/azureml/azureml_designer_modules/module_specs'
-    Contents: '**/*.yaml'
+    SourceFolder: '$(Build.SourcesDirectory)/$(module_spec_folder)'
+    Contents: $(module_spec_pattern)
     TargetFolder: '$(Build.SourcesDirectory)'
     OverWrite: true
     flattenFolders: true
@@ -27,4 +33,3 @@ steps:
     targetPath: '$(Build.SourcesDirectory)'
     artifact: 'snapshot'
     publishLocation: 'pipeline'
-
