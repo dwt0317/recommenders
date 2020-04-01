@@ -5,7 +5,7 @@
 
 variables:
   module_spec_folder: 'reco_utils/azureml/azureml_designer_modules/module_specs'
-  file_pattern: '**/*.yaml'
+  module_spec_pattern: '**/*.yaml'
 
 trigger:
   branches:
@@ -15,11 +15,21 @@ trigger:
     include:
     - $(module_spec_folder)
 
+pr: none
+    
 pool:
   vmImage: 'ubuntu-latest'
 
-jobs:
-  - template: publish-module-snapshot.yml
-    parameters:
-      module_spec_folder: $(module_spec_folder)
-      file_pattern: $(file_pattern)
+steps:
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Build.SourcesDirectory)/$(module_spec_folder)'
+    Contents: $(module_spec_pattern)
+    TargetFolder: '$(Build.SourcesDirectory)'
+    OverWrite: true
+    flattenFolders: true
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(Build.SourcesDirectory)'
+    artifact: 'snapshot'
+    publishLocation: 'pipeline'
