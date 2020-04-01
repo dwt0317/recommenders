@@ -3,28 +3,23 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+variables:
+  module_spec_folder: 'reco_utils/azureml/azureml_designer_modules/module_specs'
+  file_pattern: '**/*.yaml'
+
 trigger:
   branches:
     include:
     - master
   paths:
     include:
-    - reco_utils/azureml/azureml_designer_modules/module_specs/*
+    - $(module_spec_folder)
 
 pool:
   vmImage: 'ubuntu-latest'
 
-steps:
-- task: CopyFiles@2
-  inputs:
-    SourceFolder: '$(Build.SourcesDirectory)/reco_utils/azureml/azureml_designer_modules/module_specs'
-    Contents: '**/*.yaml'
-    TargetFolder: '$(Build.SourcesDirectory)'
-    OverWrite: true
-    flattenFolders: true
-- task: PublishPipelineArtifact@1
-  inputs:
-    targetPath: '$(Build.SourcesDirectory)'
-    artifact: 'snapshot'
-    publishLocation: 'pipeline'
-
+jobs:
+  - template: publish-run-experiment.yaml
+    parameters:
+      module_spec_folder: $(module_spec_folder)
+      file_pattern: $(file_pattern)
