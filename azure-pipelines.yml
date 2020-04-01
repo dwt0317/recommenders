@@ -4,7 +4,7 @@
 # https://aka.ms/yaml
 
 variables:
-  module_spec_folder: 'reco_utils/azureml/azureml_designer_modules/module_specs'
+  module_spec_folder: reco_utils/azureml/azureml_designer_modules/module_specs
   module_spec_pattern: '**/*.yaml'
 
 trigger:
