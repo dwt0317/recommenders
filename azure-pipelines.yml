@@ -13,7 +13,7 @@ trigger:
     - master
   paths:
     include:
-    - $(module_spec_folder)/*
+    - $(module_spec_folder)/$(module_spec_pattern)
 
 pr: none
     
