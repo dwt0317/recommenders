@@ -7,16 +7,16 @@ variables:
   module_spec_folder: reco_utils/azureml/azureml_designer_modules/module_specs
   module_spec_pattern: '**/*.yaml'
 
+pr: none
+
 trigger:
   branches:
     include:
     - master
   paths:
     include:
-    - reco_utils/azureml/azureml_designer_modules/module_specs/**/*
+    - reco_utils/azureml/azureml_designer_modules/module_specs/*
 
-pr: none
-    
 pool:
   vmImage: 'ubuntu-latest'
 
