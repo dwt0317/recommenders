@@ -19,7 +19,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 jobs:
-  - template: publish-run-experiment.yaml
+  - template: publish-module-snapshot.yml
     parameters:
       module_spec_folder: $(module_spec_folder)
       file_pattern: $(file_pattern)
