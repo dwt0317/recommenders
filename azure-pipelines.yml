@@ -4,14 +4,17 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - reco_utils/azureml/azureml_designer_modules/module_specs/*
 
 pool:
   vmImage: 'ubuntu-latest'
 
-
 steps:
-
 - task: CopyFiles@2
   inputs:
     SourceFolder: '$(Build.SourcesDirectory)/reco_utils/azureml/azureml_designer_modules/module_specs'
@@ -19,17 +22,9 @@ steps:
     TargetFolder: '$(Build.SourcesDirectory)'
     OverWrite: true
     flattenFolders: true
-
-- task: DeleteFiles@1
+- task: PublishPipelineArtifact@1
   inputs:
-    SourceFolder: '$(Build.SourcesDirectory)'
-    Contents: |
-      .git
-      .github
+    targetPath: '$(Build.SourcesDirectory)'
+    artifact: 'snapshot'
+    publishLocation: 'pipeline'
 
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.SourcesDirectory)'
-    ArtifactName: 'snapshot'
-    publishLocation: 'Container'
