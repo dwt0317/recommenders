@@ -15,7 +15,7 @@ trigger:
     - master
   paths:
     include:
-    - reco_utils/azureml/azureml_designer_modules/module_specs/**/*.yaml
+    - reco_utils/azureml/azureml_designer_modules/module_specs/*
 
 pool:
   vmImage: 'ubuntu-latest'
