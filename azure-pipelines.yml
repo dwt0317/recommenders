@@ -3,9 +3,7 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
-variables:
-  module_spec_folder: 'reco_utils/azureml/azureml_designer_modules/module_specs'
-  module_spec_pattern: '**/*.yaml'
+pr: none
 
 trigger:
   branches:
@@ -13,10 +11,12 @@ trigger:
     - master
   paths:
     include:
-    - $(module_spec_folder)
+    - reco_utils/azureml/azureml_designer_modules/module_specs/*
 
-pr: none
-    
+variables:
+  module_spec_folder: reco_utils/azureml/azureml_designer_modules/module_specs
+  module_spec_pattern: '**/*.yaml'
+
 pool:
   vmImage: 'ubuntu-latest'
 
