@@ -6,7 +6,7 @@
 trigger:
   branches:
     include:
-      - master
+    - master
   paths:
     include:
     - reco_utils/azureml/azureml_designer_modules/module_specs/*
