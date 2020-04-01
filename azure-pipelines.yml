@@ -13,7 +13,7 @@ trigger:
     - master
   paths:
     include:
-    - $(module_spec_folder)/$(module_spec_pattern)
+    - reco_utils/azureml/azureml_designer_modules/module_specs/**/*
 
 pr: none
     
