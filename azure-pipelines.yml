@@ -15,7 +15,7 @@ trigger:
     - master
   paths:
     include:
-    - $(module_spec_folder)/*
+    - '$(module_spec_folder)/$(module_spec_pattern)'
 
 pool:
   vmImage: 'ubuntu-latest'
