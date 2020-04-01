@@ -1,7 +1,7 @@
 moduleIdentifier: 
   namespace: microsoft.com/cat
   moduleName: Splitter Stratified
-  moduleVersion: 1.1.2
+  moduleVersion: 1.1.1
 metadata:
   annotations:
     tags: ["Recommenders"]
