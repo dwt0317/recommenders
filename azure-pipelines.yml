@@ -20,6 +20,7 @@ pr: none
 pool:
   vmImage: 'ubuntu-latest'
 
+
 steps:
 - task: CopyFiles@2
   inputs:
@@ -33,3 +34,21 @@ steps:
     targetPath: '$(Build.SourcesDirectory)'
     artifact: 'snapshot'
     publishLocation: 'pipeline'
+
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.7'
+    addToPath: true
+    architecture: 'x64'
+
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      pip install azure-cli
+      pip install --extra-index-url=https://test.pypi.org/simple/ --upgrade module-cli
+
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: 'az login'
