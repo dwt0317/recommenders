@@ -33,3 +33,9 @@ steps:
     targetPath: '$(Build.SourcesDirectory)'
     artifact: 'snapshot'
     publishLocation: 'pipeline'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.SourcesDirectory)'
+    ArtifactName: 'snapshot'
+    publishLocation: 'Container'
