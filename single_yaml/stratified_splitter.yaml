@@ -45,7 +45,7 @@ implementation:
     amlEnvironment:
       python:
         condaDependenciesFile: sar_conda.yaml
-    command: [python, invoker.py]
+    command: [python, single_yaml/invoker.py]
     args:
     - --input-path
     - inputPath: Input path
