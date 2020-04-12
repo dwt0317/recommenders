@@ -1,7 +1,7 @@
 moduleIdentifier: 
   namespace: microsoft.com/cat
-  moduleName: Stratified Splitter 2
-  moduleVersion: 1.1.3
+  moduleName: Stratified Splitter
+  moduleVersion: 1.1.15
 metadata:
   annotations:
     tags: ["Recommenders"]
@@ -42,10 +42,7 @@ outputs:
   description: The output directory contains a test dataframe.
 implementation:
   container:
-    amlEnvironment:
-      python:
-        condaDependenciesFile: sar_conda.yaml
-    command: [python, invoker.py]
+    image: mcr.microsoft.com/azureml/base:intelmpi2018.3-ubuntu16.04
     args:
     - --input-path
     - inputPath: Input path
