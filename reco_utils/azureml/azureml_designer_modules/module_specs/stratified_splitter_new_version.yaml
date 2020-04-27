@@ -1,7 +1,7 @@
 amlModuleIdentifier: 
   namespace: microsoft.com/cat
   moduleName: Stratified Splitter 
-  moduleVersion: 1.1.10
+  moduleVersion: 1.1.11
 metadata:
   annotations:
     tags: ["Recommenders"]
